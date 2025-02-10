@@ -2,7 +2,7 @@
 
 This project was divided into three main parts:
 
-1) Data Retrieval: First, we retrieved data from the Bloomberg interface. We created an Excel file named "MONETARY_INDEX_DATA", containing the values of multiple monetary indices such as EONIA and ESTER from 01/01/2016 to 12/31/2023. We then compiled another file, "NOTES_DATA", which includes the key characteristics of the issued notes. Finally, we generated a third file, "NOTE_RATE_DATA", consolidating all relevant rate information.
+1) Data Retrieval: First, we retrieved data from the Bloomberg interface. We created an Excel file named "MONETARY_INDEX_DATA", containing the values of multiple monetary indices such as EONIA and ESTER from 01/01/2016 to 12/31/2023. We then compiled another file, "NOTES_DATA", which includes the key characteristics of the issued notes. Finally, we generated a third file, "NOTE_RATE_DATA", consolidating all relevant rate information (using the files "spread" and "rerating").
    
 2) Database construction: Using the collected data, we built a database in SQL with four distinct tables:
 
