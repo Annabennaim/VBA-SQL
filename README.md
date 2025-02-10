@@ -1,14 +1,22 @@
 # Pricing on monetary notes using VBA and SQL
 
-This project was decomposed in three main parts:
+This project was divided into three main parts:
 
-1) First, we had to retrieve data from the interface Bloomberg. We created an excel file named "MONETARY_INDEX_DATA" with the values of multiple monetay index such as EONIA or ESTER, from 01/01/2016 to 12/31/2023. We used the data from Bloomberg. We then created an other file called "NOTES_DATA", which contains the principal caracteristics of the notes given. Finally, we created a final file named " NOTE_RATE_DATA".
-2) Secondly, with alle the date we retrieve, we had to construct a database on SQL with 4 different tables: "MONETARY_INDEX", "ISSUANCE_STATIC_DATA", "ISSUANCE_RATE_DATA" AND "ISSUANCE_DYNAMIC_DATA". This last table was fill with the data of the other tables.
-To construct these tables, we used VBA and here is the code (this is for the first table but we used the same "main" code for the others):
+1) Data Retrieval: First, we retrieved data from the Bloomberg interface. We created an Excel file named "MONETARY_INDEX_DATA", containing the values of multiple monetary indices such as EONIA and ESTER from 01/01/2016 to 12/31/2023. We then compiled another file, "NOTES_DATA", which includes the key characteristics of the issued notes. Finally, we generated a third file, "NOTE_RATE_DATA", consolidating all relevant rate information.
+   
+2) Database construction: Using the collected data, we built a database in SQL with four distinct tables:
 
-Public Sub CreerTable MONETARY_INDEX_DATA()
+- "MONETARY_INDEX"
+- "ISSUANCE_STATIC_DATA"
+- "ISSUANCE_RATE_DATA"
+- "ISSUANCE_DYNAMIC_DATA"
 
-'Here are the variables
+The "ISSUANCE_DYNAMIC_DATA" table was populated using data from the other three tables.
+To construct these tables efficiently, we leveraged VBA. Below is the VBA code used to create the first table, which served as a template for the others:
+
+    Public Sub CreerTable MONETARY_INDEX_DATA()
+
+    'Here are the variables
     Dim pathdonnees As String, pathaccess As String
     Dim wbdata As Workbook
     Dim Monetary_Index As Worksheet
@@ -80,7 +88,7 @@ Public Sub CreerTable MONETARY_INDEX_DATA()
 
     ' Dégel de l'_cran
     Application.ScreenUpdating = True
-End Sub
+    End Sub
 
 To execute the SQL request in VBA we made this public function:
     Public Function RunSqlRequest(sRequest As String, sPathDB As String) As ADODB.Recordset
@@ -97,4 +105,10 @@ To execute the SQL request in VBA we made this public function:
        
     End Function
 
-4) Lastly, we had to create an other file with just one sheet "Note"
+3) Lastly, we created a file named "NOTE_TEMPLATE", containing a single sheet called "Note". On this sheet, entering an ISIN and a pricing date automatically retrieves and displays all relevant characteristics—such as the issue date, price, or potential rerating date—directly from the database.
+
+To enhance the project's efficiency, we integrated four VBA buttons:
+- One to clear all fields after a search is completed.
+- One to print the document.
+- One to send an email.
+- One to generate a graph using the retrieved data.
