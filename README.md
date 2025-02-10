@@ -91,6 +91,7 @@ To construct these tables efficiently, we leveraged VBA. Below is the VBA code u
     End Sub
 
 To execute the SQL request in VBA we made this public function:
+    
     Public Function RunSqlRequest(sRequest As String, sPathDB As String) As ADODB.Recordset
      
     Dim conn As New ADODB.Connection
